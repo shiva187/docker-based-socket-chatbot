@@ -48,4 +48,9 @@ It is designed as a beginner-friendly guide to understand **Docker networking, c
 ```bash
 git clone https://github.com/your-username/docker-machines-communication.git
 cd docker-machines-communication
-```-
+```
+## Build & Start Containers
+
+```bash
+docker-compose up --build -d
+```
