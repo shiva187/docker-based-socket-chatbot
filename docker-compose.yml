@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  machinea:
+    build:
+      context: .
+      dockerfile: Dockerfile.D   # server side (Machine A)
+    container_name: machinea
+    image: socket-machinea
+    tty: true
+    stdin_open: true
+    ports:
+      - "9000:9000"   # expose server port
+    volumes:
+      - shared-data:/app/shared   # shared volume mount
+
+  machineb:
+    build:
+      context: .
+      dockerfile: Dockerfile.B   # client side (Machine B)
+    container_name: machineb
+    image: socket-machineb
+    tty: true
+    stdin_open: true
+    depends_on:
+      - machinea
+    volumes:
+      - shared-data:/app/shared   # same shared volume
+
+volumes:
+  shared-data:   # declare named volume
+
